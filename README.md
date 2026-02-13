@@ -8,7 +8,7 @@
 * **Database Management**: Menggunakan Prisma ORM dengan PostgreSQL.
 
 ## Design Pattern
-Aplikasi ini menerapkan **Modular Pattern**, di mana setiap domain (Auth, User, Task) dipisahkan ke dalam modul tersendiri. Hal ini memastikan kode tetap terorganisir dan memudahkan pengembangan di masa depan.
+Aplikasi ini menerapkan **Modular Pattern**, di mana setiap domain (Auth, User, Task) dipisahkan ke dalam modul tersendiri untuk memastikan kode tetap terorganisir dan memudahkan pengembangan di masa depan.
 
 ## Teknologi yang Digunakan
 - **Framework**: NestJS 
@@ -23,7 +23,7 @@ Aplikasi ini menerapkan **Modular Pattern**, di mana setiap domain (Auth, User, 
 ## Cara Menjalankan
 1. **Clone Repository**
    ```bash
-   git clone [https://github.com/dzakyadr/dot-backend-challenge](https://github.com/dzakyadr/dot-backend-challenge)
+   git clone [https://github.com/dzakyadr/dot-backend-challenge]
 
 2. **Install dependensi**
 - npm install
@@ -42,13 +42,13 @@ Aplikasi ini menerapkan **Modular Pattern**, di mana setiap domain (Auth, User, 
 
 ## API ENDPOINTS
 **Auth & User**
-- POST /users/register - Mendaftarkan user baru
-- POST /auth/login - Login dan mendapatkan JWT Token
+- POST /users/register -> Mendaftarkan user baru
+- POST /auth/login -> Login dan mendapatkan JWT Token
 
-**Tasks (Protected - Membutuhkan Bearer Token)**
-- POST /tasks - Membuat tugas baru
-- GET /tasks - Menampilkan semua tugas milik user yang sedang login
-- DELETE /tasks/:id - Menghapus tugas berdasarkan ID
+**Tasks (Membutuhkan Bearer Token)**
+- POST /tasks -> Membuat tugas baru
+- GET /tasks -> Menampilkan semua tugas milik user yang sedang login
+- DELETE /tasks/:id -> Menghapus tugas berdasarkan ID
 
 
                                       ------ Muhammad Dzaky Adrian ------
