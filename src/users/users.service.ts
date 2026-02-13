@@ -1,26 +1,40 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { PrismaService } from '../prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
+  constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return `This action returns all users`;
-  }
+  async create(createUserDto: CreateUserDto) {
+    const { email, password } = createUserDto;
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
+    // Cek apakah email sudah ada
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email },
+    });
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+    if (existingUser) {
+      throw new ConflictException('Email sudah terdaftar!');
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+    // Acak password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Simpan ke DB
+    const newUser = await this.prisma.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    // Sembunyikan password dari respon
+    const { password: _, ...result } = newUser;
+    return {
+      message: 'User berhasil mendaftar',
+      data: result,
+    };
   }
 }
