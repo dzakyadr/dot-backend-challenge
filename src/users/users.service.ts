@@ -10,7 +10,6 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const { email, password } = createUserDto;
 
-    // Cek apakah email sudah ada
     const existingUser = await this.prisma.user.findUnique({
       where: { email },
     });
@@ -19,10 +18,8 @@ export class UsersService {
       throw new ConflictException('Email sudah terdaftar!');
     }
 
-    // Acak password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Simpan ke DB
     const newUser = await this.prisma.user.create({
       data: {
         email,
@@ -30,7 +27,6 @@ export class UsersService {
       },
     });
 
-    // Sembunyikan password dari respon
     const { password: _, ...result } = newUser;
     return {
       message: 'User berhasil mendaftar',
