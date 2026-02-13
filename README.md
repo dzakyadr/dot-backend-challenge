@@ -7,6 +7,9 @@
 * **Validation**: Validasi input menggunakan `class-validator`.
 * **Database Management**: Menggunakan Prisma ORM dengan PostgreSQL.
 
+## Design Pattern
+Aplikasi ini menerapkan **Modular Pattern**, di mana setiap domain (Auth, User, Task) dipisahkan ke dalam modul tersendiri. Hal ini memastikan kode tetap terorganisir dan memudahkan pengembangan di masa depan.
+
 ## Teknologi yang Digunakan
 - **Framework**: NestJS 
 - **Database**: PostgreSQL 
@@ -20,32 +23,32 @@
 ## Cara Menjalankan
 1. **Clone Repository**
    ```bash
-  git clone [https://github.com/dzakyadr/dot-backend-challenge]
+   git clone [https://github.com/dzakyadr/dot-backend-challenge](https://github.com/dzakyadr/dot-backend-challenge)
 
 2. **Install dependensi**
-  npm install
+- npm install
 
 3. **Konfigurasi Environment**
-  Buat file .env di root folder dan sesuaikan isinya:
+- Buat file .env di root folder dan sesuaikan isinya:
   DATABASE_URL="postgresql://user:password@localhost:5432/nama_db?schema=public"
   JWT_SECRET="test_password"
 
 4. **Migrasi Database**
-  npx prisma migrate dev --name init
+- npx prisma migrate dev --name init
 
 5. **Jalankan aplikasi**
-  npm run start:dev
-  Aplikasi akan berjalan di http://localhost:3000
+- npm run start:dev
+- Aplikasi akan berjalan di http://localhost:3000
 
 ## API ENDPOINTS
 **Auth & User**
-POST /users/register - Mendaftarkan user baru
-POST /auth/login - Login dan mendapatkan JWT Token
+- POST /users/register - Mendaftarkan user baru
+- POST /auth/login - Login dan mendapatkan JWT Token
 
 **Tasks (Protected - Membutuhkan Bearer Token)**
-POST /tasks - Membuat tugas baru
-GET /tasks - Menampilkan semua tugas milik user yang sedang login
-DELETE /tasks/:id - Menghapus tugas berdasarkan ID
+- POST /tasks - Membuat tugas baru
+- GET /tasks - Menampilkan semua tugas milik user yang sedang login
+- DELETE /tasks/:id - Menghapus tugas berdasarkan ID
 
 
------- Muhammad Dzaky Adrian ------
+                                      ------ Muhammad Dzaky Adrian ------
